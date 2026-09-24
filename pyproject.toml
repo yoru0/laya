@@ -1,0 +1,19 @@
+[project]
+name = "laya-playground"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "laya>=0.3.20",
+    "torch>=2.14.0",
+]
+
+# CUDA 13.2 torch build on Windows/Linux; macOS falls back to PyPI.
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu132", marker = "sys_platform != 'darwin'" },
+]
